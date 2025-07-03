@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+.font-anton {
+  font-family: "Anton", sans-serif;
+}
+
+.font-montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-chango {
+  font-family: var(--font-chango), "Chango", cursive;
+}
+
+body {
+  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Loader Animation */
+.sk-cube-grid {
+  width: 60px;
+  height: 60px;
+  margin: 100px auto;
+}
+
+.sk-cube-grid .sk-cube {
+  width: 33%;
+  height: 33%;
+  background-color: #22c55e;
+  float: left;
+  animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+}
+
+.sk-cube-grid .sk-cube1 {
+  animation-delay: 0.2s;
+}
+
+.sk-cube-grid .sk-cube2 {
+  animation-delay: 0.3s;
+}
+
+.sk-cube-grid .sk-cube3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes sk-cubeGridScaleDelay {
+  0%,
+  70%,
+  100% {
+    transform: scale3D(1, 1, 1);
+  }
+  35% {
+    transform: scale3D(0, 0, 1);
+  }
+}
+
+/* Custom Utilities */
+.text-gradient {
+  background: linear-gradient(45deg, #22c55e, #eab308);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.border-gradient {
+  border: 2px solid;
+  border-image: linear-gradient(45deg, #22c55e, #eab308) 1;
+}
+
+/* Image gradient effect */
+.image-gradient {
+  position: relative;
+}
+
+.image-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, transparent 30%, rgba(0, 0, 0, 0.8) 70%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.image-gradient img {
+  position: relative;
+  z-index: 2;
+}
+
+.image-gradient-bear {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.image-gradient-bear::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 110%;
+  height: 110%;
+  background: radial-gradient(circle at 80% 80%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.9) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.image-gradient-bear img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+/* Responsive text sizes */
+@media (max-width: 768px) {
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+  .text-6xl {
+    font-size: 3rem;
+  }
+  .text-7xl {
+    font-size: 3.5rem;
+  }
+}
