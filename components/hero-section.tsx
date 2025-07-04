@@ -8,7 +8,6 @@ import { Loader } from "./loader"
 import axios from "axios"
 import { motion } from "framer-motion"
 import { useIsMobile } from "@/hooks/use-mobile"
-import { useRouter } from 'next/router';
 
 export function HeroSection() {
   const { sendTrackingData } = useUserTracking()
@@ -33,8 +32,6 @@ export function HeroSection() {
     }
     fetchLocalidad()
   }, [])
-
-  const router = useRouter();
 
   const handleWhatsAppClick = async () => {
     setLoadingStates((prevStates) => ({ ...prevStates, whatsapp: true }))
