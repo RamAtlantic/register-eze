@@ -57,10 +57,10 @@ export function HeroSection() {
       }
 
       // Redirección a WhatsApp
+      const whatsappUrl = "https://wa.me/541168568228?text=hola,%20como%20creo%20mi%20usuario%20en%20MoneyMaker";
       
-      const whatsappUrl = 
-        "https://wa.me/541168568228?text=hola,%20como%20creo%20mi%20usuario%20en%20MoneyMaker";
-      router.push(whatsappUrl);
+      // Usar window.location.href para redirigir a una página externa
+      window.location.href = whatsappUrl;
     } catch (error) {
       console.error("Error en el proceso:", error)
       // Fallback a WhatsApp directo
