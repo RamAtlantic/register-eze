@@ -8,6 +8,7 @@ import { Loader } from "./loader"
 import axios from "axios"
 import { motion } from "framer-motion"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { useRouter } from 'next/router';
 
 export function HeroSection() {
   const { sendTrackingData } = useUserTracking()
@@ -33,6 +34,8 @@ export function HeroSection() {
     fetchLocalidad()
   }, [])
 
+  const router = useRouter();
+
   const handleWhatsAppClick = async () => {
     setLoadingStates((prevStates) => ({ ...prevStates, whatsapp: true }))
 
@@ -54,17 +57,15 @@ export function HeroSection() {
       }
 
       // Redirección a WhatsApp
-      const whatsappUrl =
-        process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-        "https://wa.me/541168568228?text=hola,%20como%20creo%20mi%20usuario%20en%20MoneyMaker"
-      window.open(whatsappUrl, "_blank")
+      
+      const whatsappUrl = 
+        "https://wa.me/541168568228?text=hola,%20como%20creo%20mi%20usuario%20en%20MoneyMaker";
+      router.push(whatsappUrl);
     } catch (error) {
       console.error("Error en el proceso:", error)
       // Fallback a WhatsApp directo
-      const whatsappUrl =
-        process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-        "https://wa.me/1234567890?text=Hola,%20quiero%20registrarme%20en%20Mooney%20Maker"
-      window.open(whatsappUrl, "_blank")
+      const whatsappUrl = "https://wa.me/541168568228?text=hola,%20como%20creo%20mi%20usuario%20en%20MoneyMaker"
+      router.push(whatsappUrl);
     } finally {
       setLoadingStates((prevStates) => ({ ...prevStates, whatsapp: false }))
     }
