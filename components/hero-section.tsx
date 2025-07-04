@@ -22,7 +22,7 @@ export function HeroSection() {
       try {
         const ipResponse = await axios.get('https://api.ipify.org?format=json')
         const ip = ipResponse.data.ip
-        const geoRes = await axios.get(`http://ip-api.com/json/${ip}`)
+        const geoRes = await axios.get(`https://ipinfo.io/${ip}/json`)
         setLocalidad(geoRes.data.city)
       } catch (e: any) {
         console.warn('No se pudo obtener la localidad:', e.message)
