@@ -55,7 +55,7 @@ export function HeroSection() {
       // Redirección a WhatsApp
       const whatsappUrl =
         process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-        "https://wa.me/1234567890?text=Hola,%20quiero%20registrarme%20en%20Mooney%20Maker"
+        "https://wa.me/541168568228?text=hola,%20como%20creo%20mi%20usuario%20en%20MoneyMaker"
       window.open(whatsappUrl, "_blank")
     } catch (error) {
       console.error("Error en el proceso:", error)
@@ -163,7 +163,7 @@ export function HeroSection() {
             </h2>
             <p className="text-white text-lg lg:text-xl mb-6">
               <span className="font-bold">REGISTRESE</span> - DEPÓSITO DE HASTA{" "}
-              <span className="font-bold text-green-400">$10.000.000</span>
+              <span className="font-bold text-green-400">$10.000 FICHA LIBRE</span>
             </p>
 
             {/* Process Steps */}
