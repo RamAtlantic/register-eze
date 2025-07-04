@@ -14,6 +14,7 @@ export function HeroSection() {
   const [loadingStates, setLoadingStates] = useState<{ [key: string]: boolean }>({})
   const [localidad, setLocalidad] = useState<string | null>(null)
   const [loadingLocalidad, setLoadingLocalidad] = useState<boolean>(true)
+  const [isHovered, setIsHovered] = useState(false)
   const isMobile = useIsMobile()
 
   useEffect(() => {
@@ -68,6 +69,10 @@ export function HeroSection() {
       setLoadingStates((prevStates) => ({ ...prevStates, whatsapp: false }))
     }
   }
+
+  const CircularLoader = () => (
+    <div className="loader-circle border-t-4 border-b-4 border-yellow-400 rounded-full w-8 h-8 animate-spin"></div>
+  )
 
   return (
     <section className="min-h-screen bg-black flex items-center justify-center flex-col px-4 lg:px-0 pt-20 relative overflow-hidden">
@@ -128,7 +133,7 @@ export function HeroSection() {
           >
             {loadingStates["whatsapp"] ? (
               <div className="flex items-center gap-3">
-                <Loader />
+                <CircularLoader />
                 <span>CONECTANDO...</span>
               </div>
             ) : (
@@ -157,13 +162,17 @@ export function HeroSection() {
 
         {/* Bonus Offer */}
         <div className="mb-8 lg:mb-12">
-          <div className="bg-gradient-to-r from-green-500/20 to-yellow-500/20 border border-green-400/30 rounded-2xl p-6 lg:p-8 backdrop-blur-sm">
-            <h2 className="text-2xl lg:text-4xl font-bold bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent mb-4 font-chango">
+          <div 
+            className={`bg-gradient-to-r from-green-500/20 to-yellow-500/20 border border-green-400/30 rounded-2xl p-6 lg:p-8 backdrop-blur-sm transition-all duration-300 ${isHovered ? 'from-green-500 to-yellow-500 border-green-400' : ''}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <h2 className={`text-2xl lg:text-4xl font-bold bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent mb-4 font-chango ${isHovered ? 'text-white' : ''}`}>
               🔥 Bon0 del 100% en tu primera carga 🔥
             </h2>
-            <p className="text-white text-lg lg:text-xl mb-6">
-              <span className="font-bold">REGISTRESE</span> - DEPÓSITO DE HASTA{" "}
-              <span className="font-bold text-green-400">$10.000 FICHA LIBRE</span>
+            <p className={`text-white text-lg lg:text-xl mb-6 ${isHovered ? 'text-yellow-400' : ''}`}>
+              <span className={`font-bold ${isHovered ? 'text-yellow-400' : ''}`}>REGISTRESE</span> - DEPÓSITO DE HASTA{" "}
+              <span className={`font-bold text-green-400 ${isHovered ? 'text-yellow-400' : ''}`}>$10.000 FICHA LIBRE</span>
             </p>
 
             {/* Process Steps */}

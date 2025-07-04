@@ -1,4 +1,4 @@
-// File: /Users/ramiroatlantic/Desktop/CROSSUP/ladings-lautaro/landings-RA/landing-seven/app/layout.tsx
+// File: /Users/ramiroatlantic/Desktop/CROSSUP/landings-lautaro/landings-RA/landing-seven/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

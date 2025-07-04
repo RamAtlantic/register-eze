@@ -35,9 +35,7 @@ export function Navbar() {
 
       if (isWhatsApp) {
         // Redirección a WhatsApp
-        const whatsappUrl =
-          process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-          "https://wa.me/1234567890?text=Hola,%20quiero%20registrarme%20en%20Mooney%20Maker";
+        const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP_URL
         window.open(whatsappUrl, "_blank");
       } else {
         // Redirección normal
@@ -50,9 +48,7 @@ export function Navbar() {
       console.error("Error en el proceso:", error);
 
       if (isWhatsApp) {
-        const whatsappUrl =
-          process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-          "https://wa.me/1234567890?text=Hola,%20quiero%20registrarme%20en%20Mooney%20Maker";
+        const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP_URL
         window.open(whatsappUrl, "_blank");
       } else {
         const registerUrl = process.env.NEXT_PUBLIC_REGISTER_URL;
@@ -64,6 +60,11 @@ export function Navbar() {
       setLoadingStates((prevStates) => ({ ...prevStates, [buttonId]: false }));
     }
   };
+
+
+  const CircularLoader = () => (
+    <div className="loader-circle border-t-4 border-b-4 border-yellow-400 rounded-full w-8 h-8 animate-spin"></div>
+  )
 
   const isMobile = useIsMobile()
 
@@ -96,7 +97,7 @@ export function Navbar() {
               >
                 {loadingStates["whatsapp"] ? (
                   <div className="flex items-center gap-1 md:gap-2">
-                    <Loader />
+                    <CircularLoader />
                     <span className="hidden sm:inline">CONECTANDO...</span>
                   </div>
                 ) : (

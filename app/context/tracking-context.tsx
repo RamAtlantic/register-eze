@@ -112,10 +112,10 @@ export const TrackingProvider: React.FC<{ children: ReactNode }> = ({ children }
     }
   }
 
-  // Función para obtener la localidad a partir de la IP
+  // Función para obtener la localidad a partir de la IP usando ipinfo.io
   const getLocalidad = async (): Promise<string | undefined> => {
     try {
-      const response = await fetch('https://ip-api.com/json/')
+      const response = await fetch('https://ipinfo.io/json')
       const data = await response.json()
       return data.city
     } catch (error) {
