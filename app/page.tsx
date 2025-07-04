@@ -23,9 +23,7 @@ export default function Home() {
     <>
       {loading && <Loader />}
       <div className={`${loading ? "hidden" : "block"}`}>
-        <Navbar />
         <HeroSection />
-        <BannerBottom />
       </div>
     </>
   )

@@ -11,7 +11,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const anton = Montserrat({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-anton" })
 const montserrat =Anton({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-montserrat" })
 
-const chango = Luckiest_Guy({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-chango" })
+const chango = Anton({ subsets: ["latin"], weight: "400", display: "swap", variable: "--font-chango" })
 
 
 
