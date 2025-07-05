@@ -18,12 +18,18 @@ import {
 import { useState, useEffect } from "react"
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { sendMetaEvent } from "@/services/metaEventService"
+import { useUserTracking } from "./context/tracking-context"
 
 export default function HomePage() {
   const [visibleSteps, setVisibleSteps] = useState<number[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [localidad, setLocalidad] = useState('');
   const [loadingLocalidad, setLoadingLocalidad] = useState(true);
+  const [loadingStates, setLoadingStates] = useState({
+    whatsapp: false,
+  })
+  const {sendTrackingData} = useUserTracking()
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -103,6 +109,33 @@ export default function HomePage() {
     },
   ]
 
+  const handleWhatsAppClick = async () => {
+    setLoadingStates((prevStates) => ({ ...prevStates, whatsapp: true }))
+    try {
+      const tempEmail = `user_${Date.now()}@example.com`
+      const success = await sendMetaEvent(tempEmail, "10")
+      if (success) {
+        console.log("Evento de registro enviado exitosamente a Meta")
+      } else {
+        console.warn("No se pudo enviar el evento a Meta")
+      }
+      try {
+        await sendTrackingData()
+        console.log("Datos de tracking enviados exitosamente")
+      } catch (error) {
+        console.warn("Error enviando datos de tracking:", error)
+      }
+      const whatsappUrl = "https://wa.me/541168568228?text=hola,%20como%20creo%20mi%20usuario%20en%20MoneyMaker"
+      window.location.href = whatsappUrl
+    } catch (error) {
+      console.error("Error en el proceso:", error)
+      const whatsappUrl = "https://wa.me/541168568228?text=hola,%20como%20creo%20mi%20usuario%20en%20MoneyMaker"
+      window.location.href = whatsappUrl
+    } finally {
+      setLoadingStates((prevStates) => ({ ...prevStates, whatsapp: false }))
+    }
+  }
+
   return (
     <div className="bg-gradient-to-b from-slate-900 to-slate-800">
       {/* Hero Section */}
@@ -179,12 +212,11 @@ export default function HomePage() {
               className="w-32 h-32 lg:w-[300px] lg:h-[300px]"
             />
              <Button
-              asChild
+             onClick={handleWhatsAppClick}  
               className="bg-red-600 hover:bg-red-700 text-white font-bold py-10 px-10 border rounded-2xl text-6xl border-2 border-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-600/50 -mt-10"
             >
-              <a href="https://mooneymaker.co/?ref=19118" target="_blank" rel="noreferrer nofollow">
                 QUIERO MI USUARIO 
-              </a>
+              
             </Button>
             <img
               src="https://green-dove-860908.hostingersite.com/wp-content/uploads/2025/07/perfil-1-sf-m7V3yay2qNh7vln7.png"
@@ -197,12 +229,10 @@ export default function HomePage() {
           <div className="lg:hidden flex flex-col items-center mt-2">
             {/* Botón principal más pequeño */}
             <Button
-              asChild
+            onClick={handleWhatsAppClick}
               className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-6 border rounded-2xl text-3xl border-2 border-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-600/50"
             >
-              <a href="https://mooneymaker.co/?ref=19118" target="_blank" rel="noreferrer nofollow">
-                QUIERO MI USUARIO
-              </a>
+                  QUIERO MI USUARIO
             </Button>
 
             {/* Oso mucho más pequeño para móvil */}
@@ -210,7 +240,7 @@ export default function HomePage() {
               <img
                 src="https://green-dove-860908.hostingersite.com/wp-content/uploads/2025/07/perfil-1-sf-m7V3yay2qNh7vln7.png"
                 alt="Oso"
-                className="h-[auto] w-[auto] sm:w-36 sm:h-36 object-contain -mt-10"
+                className="h-[auto] w-[auto] max-w-[400px] max-h-[400px] sm:w-32 sm:h-32 object-contain -mt-10"
               />
             </div>
           </div>
@@ -390,12 +420,10 @@ export default function HomePage() {
             }`}
           >
              <Button
-              asChild
+              onClick={handleWhatsAppClick}
               className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-6 border rounded-2xl text-3xl border-2 border-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-600/50"
             >
-              <a href="https://mooneymaker.co/?ref=19118" target="_blank" rel="noreferrer nofollow">
                 QUIERO MI USUARIO
-              </a>
             </Button>
           </div>
         </div>
@@ -420,12 +448,10 @@ export default function HomePage() {
                 ></iframe>
               </div>
               <Button
-              asChild
+              onClick={handleWhatsAppClick}
               className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-6 border rounded-2xl text-3xl border-2 border-yellow-400 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-600/50"
             >
-              <a href="https://mooneymaker.co/?ref=19118" target="_blank" rel="noreferrer nofollow">
                 QUIERO MI USUARIO
-              </a>
             </Button>
             </div>
           </div>
