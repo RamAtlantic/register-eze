@@ -13,12 +13,17 @@ import {
   Clock,
   AlertTriangle,
   User2,
+  MapPin,
 } from "lucide-react"
 import { useState, useEffect } from "react"
+import axios from 'axios';
+import { motion } from 'framer-motion';
 
 export default function HomePage() {
   const [visibleSteps, setVisibleSteps] = useState<number[]>([])
   const [currentStep, setCurrentStep] = useState(0)
+  const [localidad, setLocalidad] = useState('');
+  const [loadingLocalidad, setLoadingLocalidad] = useState(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,6 +37,22 @@ export default function HomePage() {
 
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    const fetchLocalidad = async () => {
+      try {
+        const ipResponse = await axios.get('https://api.ipify.org?format=json');
+        const ip = ipResponse.data.ip;
+        const geoRes = await axios.get(`https://ipinfo.io/${ip}/json`);
+        setLocalidad(geoRes.data.city);
+      } catch (e: any) {
+        console.warn('No se pudo obtener la localidad:', e.message);
+      } finally {
+        setLoadingLocalidad(false);
+      }
+    };
+    fetchLocalidad();
+  }, []);
 
   const steps = [
     {
@@ -120,6 +141,35 @@ export default function HomePage() {
               </div>
             </div>
           </div>
+
+
+          {/* Location with Argentina Flag */}
+          <div className="flex justify-center ">
+          <motion.div
+            className=" flex justify-center w-[300px] items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full"
+            whileHover={{
+              scale: 1.05,
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              borderColor: 'rgba(34, 197, 94, 0.3)',
+            }}
+          >
+           
+            <MapPin className="w-4 h-4 text-blue-400" />
+            {loadingLocalidad ? (
+              <div className="h-4 bg-white/20 rounded animate-pulse w-24" />
+            ) : (
+              <span className="text-white font-medium">{localidad || 'Argentina'}</span>
+            )}
+             <motion.div
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, repeatDelay: 3 }}
+            >
+              🇦🇷
+            </motion.div>
+          </motion.div>
+          
+          </div>
+          
 
           {/* Desktop Layout */}
           <div className="hidden lg:flex flex-row justify-between items-center lg:-mt-10">
