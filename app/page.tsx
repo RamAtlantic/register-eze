@@ -387,10 +387,10 @@ export default function HomePage() {
         href="https://wa.me/5491134901491?text=Hola%20me%20gustar%C3%ADa%20crear%20un%20usuario%20y%20cargar!"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 animate-pulse"
+        className="fixed bottom-6 right-6 z-50 border-2 border-green-500 bg-transparent hover:bg-white text-white p-4 rounded-full shadow-lg "
         title="Contactar por WhatsApp"
       >
-        <Phone className="w-6 h-6" />
+        <img src="https://static.whatsapp.net/rsrc.php/v4/yz/r/ujTY9i_Jhs1.png" className="w-8 h-8" />
       </a>
     </div>
   )
