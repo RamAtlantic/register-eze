@@ -146,7 +146,7 @@ export default function HomePage() {
           {/* Location with Argentina Flag */}
           <div className="flex justify-center ">
           <motion.div
-            className=" flex justify-center w-[300px] items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full"
+            className=" flex justify-center w-[300px] items-center gap-3 bg-white/5 backdrop-blur-xl border border-white/10 px-4 py-1 rounded-full"
             whileHover={{
               scale: 1.05,
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -194,7 +194,7 @@ export default function HomePage() {
           </div>
 
           {/* Mobile Layout - Más compacto */}
-          <div className="lg:hidden flex flex-col items-center">
+          <div className="lg:hidden flex flex-col items-center mt-2">
             {/* Botón principal más pequeño */}
             <Button
               asChild
