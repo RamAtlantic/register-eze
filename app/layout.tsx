@@ -80,8 +80,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  // Alternativa al generator, si no quieres el de v0.dev
-  // generator: siteConfig.name, 
 };
 
 export default function RootLayout({
